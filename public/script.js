@@ -116,14 +116,14 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         if (value === solution[rowIndex][colIndex]) {
-            inputElement.style.backgroundColor = "#1DB954"; // Green for correct
-            inputElement.style.color = "#000000"; // Black text
+            inputElement.style.backgroundColor = "#1DB954"; 
+            inputElement.style.color = "#000000";
         } else if (value === 0) {
-            inputElement.style.backgroundColor = "transparent"; // Reset
-            inputElement.style.color = "#000000"; // Default
+            inputElement.style.backgroundColor = "transparent";
+            inputElement.style.color = "#000000";
         } else {
-            inputElement.style.backgroundColor = "#E74C3C"; // Red for incorrect
-            inputElement.style.color = "#FFFFFF"; // White text
+            inputElement.style.backgroundColor = "#E74C3C"; 
+            inputElement.style.color = "#FFFFFF";
         }
     }
 });

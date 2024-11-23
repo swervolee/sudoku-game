@@ -7,7 +7,7 @@ const port = 3000;
 
 app.use(cors());
 
-app.use(express.static('public')); // To serve the HTML, CSS, and JS files
+app.use(express.static('public'));
 
 app.get("/generatePuzzle", (req, res) => {
     const board = createBoard();
@@ -75,7 +75,7 @@ function isValid(board, row, col, num) {
 
 function createPuzzle(board) {
     const levels = { easy: 35, medium: 45, hard: 55 };
-    const difficulty = levels.medium; // You can change this for different levels
+    const difficulty = levels.medium;
     let cellsToRemove = difficulty;
 
     while (cellsToRemove > 0) {
