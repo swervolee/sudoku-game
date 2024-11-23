@@ -1,90 +1,129 @@
-$(document).ready(function () {
-	const boardElement = $("#sudoku-board");
-	const generateButton = $("#generate-puzzle");
-	let solution = []; // Stores the correct solution for validation
+document.addEventListener("DOMContentLoaded", function () {
+    const boardElement = document.getElementById("sudoku-board");
+    const generateButton = document.getElementById("generate-puzzle");
 
-	// Fetch and generate the puzzle
-	generateButton.click(function () {
-		$.ajax({
-			url: "http://localhost:3000/generatePuzzle",
-			method: "GET",
-			success: function (data) {
-				if (!data.puzzle || !data.solution) {
-					console.error("Invalid puzzle data received.");
-					alert("Failed to generate puzzle. Invalid data.");
-					return;
-				}
-				const { puzzle, solution: correctSolution } = data;
-				solution = correctSolution; // Save the solution
-				renderBoard(puzzle);
-			},
-			error: function (err) {
-				console.log(err);
-				alert("Failed to generate puzzle. Please try again.");
-			},
-		});
-	});
+    // Create Check Puzzle button
+    const checkPuzzleButton = document.createElement("button");
+    checkPuzzleButton.innerText = "Check Puzzle";
+    checkPuzzleButton.id = "check-puzzle";
 
-	function renderBoard(board) {
-		boardElement.empty();
-		boardElement.css("display", "grid");
-		boardElement.css("grid-template-columns", "repeat(9, 1fr)");
+    let solution = []; // Store the correct solution here
 
-		board.forEach((row, rowIndex) => {
-			row.forEach((cell, colIndex) => {
-				const cellDiv = $("<div></div>").addClass("cell");
+    // Fetch and generate the puzzle
+    generateButton.addEventListener("click", function () {
+        fetch("http://localhost:3000/generatePuzzle")
+            .then(response => response.json())
+            .then(data => {
+                if (!data.puzzle || !data.solution) {
+                    console.error("Invalid puzzle data received.");
+                    alert("Failed to generate puzzle. Invalid data.");
+                    return;
+                }
 
-				if (cell === 0) {
-					const input = $("<input>", {
-						type: "number",
-						max: 9,
-						min: 1,
-						maxlength: 1,
-						placeholder: " ",
-						class: "editable-cell",
-					});
+                const { puzzle, solution: correctSolution } = data;
+                solution = correctSolution; // Save the solution
+		console.log(solution);
 
-					// Add input change event for validation
-					input.on("input", function () {
-						const userValue = parseInt($(this).val()) || 0;
-						validateCell(userValue, rowIndex, colIndex, $(this));
-					});
+                // Ensure Check Puzzle button is appended only once
+                if (!document.getElementById("check-puzzle")) {
+                    document.querySelector(".container").appendChild(checkPuzzleButton);
+                }
 
-					cellDiv.append(input);
-				} else {
-					const span = $("<span></span>")
-						.text(cell)
-						.addClass("prefilled-cell");
-					cellDiv.append(span);
-				}
+                renderBoard(puzzle);
+            })
+            .catch(err => {
+                console.error("Error fetching puzzle:", err);
+                alert("Failed to generate puzzle. Please try again.");
+            });
+    });
 
-				boardElement.append(cellDiv);
+    // Render the Sudoku board
+    function renderBoard(board) {
+        boardElement.innerHTML = ""; // Clear the board
+        boardElement.style.display = "grid";
+        boardElement.style.gridTemplateColumns = "repeat(9, 1fr)";
+
+        board.forEach((row, rowIndex) => {
+            row.forEach((cell, colIndex) => {
+                const cellDiv = document.createElement("div");
+                cellDiv.classList.add("cell");
+
+                if (cell === 0) {
+                    const input = document.createElement("input");
+                    input.type = "number";
+                    input.max = "9";
+                    input.min = "1";
+                    input.placeholder = " ";
+                    input.classList.add("editable-cell");
+
+
+		    input.addEventListener('click', () => {
+			const elements = boardElement.querySelectorAll('.editable-cell');
+			elements.forEach((el) => {
+			    el.style.backgroundColor = "";
 			});
-		});
-	}
+		    });
 
-	function validateCell(value, rowIndex, colIndex, inputElement) {
-		if (!solution || solution.length === 0) {
-			console.error("Solution not loaded.");
-			return;
-		}
+                    cellDiv.appendChild(input);
+                } else {
+                    const span = document.createElement("span");
+                    span.textContent = cell;
+                    span.classList.add("prefilled-cell");
+                    cellDiv.appendChild(span);
+                }
 
-		if (value === solution[rowIndex][colIndex]) {
-			inputElement.css({
-				"background-color": "#1DB954", // Green for correct
-				color: "#000000", // Black text
-			});
-		} else if (value === 0) {
-			inputElement.css({
-				"background-color": "transparent", // Reset
-				color: "#000000", // Default
-			});
-		} else {
-			inputElement.css({
-				"background-color": "#E74C3C", // Red for incorrect
-				color: "#FFFFFF", // White text
-			});
-		}
-	}
+                boardElement.appendChild(cellDiv);
+            });
+        });
+    }
+
+    // Check Puzzle button click event
+    checkPuzzleButton.addEventListener("click", function (event) {
+        event.preventDefault();
+        if (!solution.length) {
+            alert("Generate a puzzle first.");
+            return;
+        }
+
+        let isCorrect = true;
+        const cells = boardElement.querySelectorAll(".editable-cell");
+
+        cells.forEach((input, index) => {
+            const rowIndex = Math.floor(index / 9);
+            const colIndex = index % 9;
+            const userValue = parseInt(input.value) || 0;
+
+
+            if (userValue !== solution[rowIndex][colIndex]) {
+                isCorrect = false;
+                input.style.backgroundColor = "#E74C3C";
+		input.style.color = "#CCC";
+            } else {
+		input.classList.add('green-colored');
+                input.style.backgroundColor = "#1DB954";
+		input.style.color = "#CCC";
+            }
+        });
+
+        alert(isCorrect ? "Congratulations! The puzzle is correct!" : "Some values are incorrect.");
+    });
+
+    // Validate individual cell
+    function validateCell(value, rowIndex, colIndex, inputElement) {
+        if (!solution || solution.length === 0) {
+            console.error("Solution not loaded.");
+            return;
+        }
+
+        if (value === solution[rowIndex][colIndex]) {
+            inputElement.style.backgroundColor = "#1DB954"; // Green for correct
+            inputElement.style.color = "#000000"; // Black text
+        } else if (value === 0) {
+            inputElement.style.backgroundColor = "transparent"; // Reset
+            inputElement.style.color = "#000000"; // Default
+        } else {
+            inputElement.style.backgroundColor = "#E74C3C"; // Red for incorrect
+            inputElement.style.color = "#FFFFFF"; // White text
+        }
+    }
 });
-
