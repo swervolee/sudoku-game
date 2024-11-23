@@ -23,58 +23,51 @@ h1 {
     color: #1DB954;
 }
 
-p {
-    color: #B3B3B3;
-}
-
 #sudoku-board {
     display: grid;
     grid-template-columns: repeat(9, 1fr);
     gap: 2px;
-    width: 90%;
     max-width: 450px;
     margin: 20px auto;
     background-color: #535353;
     border-radius: 10px;
 }
 
-#sudoku-board div {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.cell {
     border: 1px solid #282828;
-    aspect-ratio: 1;
-    position: relative;
     background-color: #121212;
 }
 
-#sudoku-board input {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+.editable-cell {
     width: 100%;
     height: 100%;
     border: none;
-    font-size: 1.5rem;
     text-align: center;
+    font-size: 1.5rem;
     color: #1DB954;
     background-color: transparent;
     outline: none;
-    cursor: pointer;
 }
 
-#sudoku-board span {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
+.prefilled-cell {
     font-size: 1.5rem;
     color: #FFFFFF;
-    background-color: #282828;
-    text-align: center;
-    line-height: normal;
+}
+
+.thick-border-top {
+    border-top: 3px solid #1DB954;
+}
+
+.thick-border-left {
+    border-left: 3px solid #1DB954;
+}
+
+.grid-background-1 {
+    background-color: #2B2B2B;
+}
+
+.grid-background-2 {
+    background-color: #3A3A3A;
 }
 
 button {
@@ -93,22 +86,4 @@ button:hover {
     background-color: #FFFFFF;
     color: #1DB954;
     transform: scale(1.05);
-
 }
-
-
-/* Additional styling for editable cells */
-#sudoku-board input.editable-cell {
-    font-size: 1.5rem;
-    text-align: center;
-    border: 1px solid transparent; /* Default border */
-    transition: background-color 0.3s, color 0.3s;
-}
-
-/* Prefilled cells styling */
-#sudoku-board span.prefilled-cell {
-    font-weight: bold;
-    text-align: center;
-    line-height: 1;
-}
-

@@ -48,6 +48,16 @@ document.addEventListener("DOMContentLoaded", function () {
                 const cellDiv = document.createElement("div");
                 cellDiv.classList.add("cell");
 
+		// Add thick borders for 3×3 grids
+                if (rowIndex % 3 === 0 && rowIndex !== 0)
+                    cellDiv.classList.add("thick-border-top");
+                if (colIndex % 3 === 0 && colIndex !== 0)
+                    cellDiv.classList.add("thick-border-left");
+
+		const isGrid1 = Math.floor(rowIndex / 3) % 2 === Math.floor(colIndex / 3) % 2;
+                cellDiv.classList.add(isGrid1 ? "grid-background-1" : "grid-background-2");
+
+		
                 if (cell === 0) {
                     const input = document.createElement("input");
                     input.type = "number";
