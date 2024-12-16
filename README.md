@@ -1,90 +1,70 @@
-# Sudoku App
+# Getting Started with Create React App
 
-A fun and interactive Sudoku app designed to let users generate, play, and validate Sudoku puzzles. This project is built with a simple yet functional design and includes both frontend and backend implementations.
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Features
+## Available Scripts
 
-- **Generate Random Puzzles**: Users can generate new Sudoku puzzles.
-- **Interactive Gameplay**: Fill in cells to complete the puzzle.
-- **Validation**: Check if the entered solution is correct.
-- **Responsive Design**: Optimized for various screen sizes.
+In the project directory, you can run:
 
-## Project Structure
+### `npm start`
 
-```
-── package.json
-├── package-lock.json
-├── public
-│   ├── index.html         # Main HTML file for the app
-│   ├── script.js          # Contains frontend JavaScript logic
-│   └── styles.css         # CSS file for styling the app
-├── README.md              # Project documentation
-└── server.js              # Backend server implementation
-```
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-## Technologies Used
+The page will reload when you make changes.\
+You may also see any lint errors in the console.
 
-### Frontend
-- **HTML**: Markup for structuring the app.
-- **CSS**: Styling for a user-friendly interface.
-- **JavaScript**: Core logic for the game.
+### `npm test`
 
-### Backend
-- **Node.js**: Backend server for handling requests.
-- **Express.js**: Web framework for creating the server.
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### Package Management
-- **npm**: Dependency and package management.
+### `npm run build`
 
-## Installation and Setup
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-1. **Clone the Repository**:
-   ```bash
-   git clone https://github.com/swervolee/sudoku-app.git
-   cd sudoku-app
-   ```
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
 
-2. **Install Dependencies**:
-   ```bash
-   npm install
-   ```
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-3. **Start the Server**:
-   ```bash
-   node server.js
-   ```
+### `npm run eject`
 
-4. **Access the App**:
-   Open your browser and navigate to `http://localhost:3000`.
+**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-## How to Play
+If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-1. Click "Generate Puzzle" to load a new Sudoku grid.
-2. Fill in the blank cells with numbers 1-9.
-3. Click "Check Solution" to validate your answers.
-4. Errors will be highlighted, and a success message appears if the puzzle is correct.
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-## Future Enhancements
+You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-- Add difficulty levels (Easy, Medium, Hard).
-- Implement user accounts and puzzle saving.
-- Include a timer for tracking completion time.
-- Add mobile app support.
+## Learn More
 
-## Contributing
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-Contributions are welcome! Please follow these steps:
+To learn React, check out the [React documentation](https://reactjs.org/).
 
-1. Fork this repository.
-2. Create a branch for your feature: `git checkout -b feature-name`.
-3. Commit your changes: `git commit -m 'Add feature'`.
-4. Push to your branch: `git push origin feature-name`.
-5. Open a pull request.
+### Code Splitting
 
-## License
+This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-This project is licensed under the [MIT License](LICENSE).
+### Analyzing the Bundle Size
 
----
+This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-Enjoy solving Sudoku puzzles and have fun!
+### Making a Progressive Web App
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+
+### Advanced Configuration
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+
+### Deployment
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+
+### `npm run build` fails to minify
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

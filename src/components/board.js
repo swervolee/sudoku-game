@@ -1,7 +1,7 @@
 import createBoard from "./GenBoard/board"
 import Cell from "./cell";
 
-export default function Board({puzzle, solution}) {
+export default function Board({puzzle, solution, incorrectCells}) {
 	return (
     <div
       style={{
@@ -18,6 +18,9 @@ export default function Board({puzzle, solution}) {
             rowIndex={rowIndex}
             colIndex={colIndex}
             solution={solution}
+			isIncorrect={incorrectCells.some(
+				([r,c]) => r === rowIndex && c === colIndex
+			)}
           />
         ))
       )}
