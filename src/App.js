@@ -27,7 +27,7 @@ function App() {
 	return (
 		<>
 			<Header generatePuzzle={generatePuzzle} />
-			<div className="flex flex-col items-center p-4">
+			<div className="container flex flex-col items-center p-4">
 				<Board puzzle={puzzle} solution={solution} incorrectCells={incorrectCells} />
 				{puzzle.length > 0 ? (
 					<CheckPuzzleButton puzzle={puzzle} solution={solution} setIncorrectCells={setIncorrectCells} />
